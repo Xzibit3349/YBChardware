@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>顽豹AI 编程学习机 · 交互原型</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app-bg">
+  <header class="app-title">顽豹AI 编程学习机 · 交互原型演示</header>
+
+  <div class="stage">
+    <!-- ============ 左侧：顽豹AI 设备 ============ -->
+    <section class="device-panel">
+      <div class="device-figure" id="deviceFigure">
+        <img class="device-photo" src="assets/device/robot.png" alt="顽豹AI设备">
+        <div class="ring-btn" id="btnRing" data-btn="ring" title="顶部圆环">
+          <span class="btn-tag">圆环</span>
+        </div>
+        <button class="paw-btn paw-left" id="btnLeft" data-btn="left" aria-label="左手按钮">
+          <span class="btn-tag">左手</span>
+        </button>
+        <button class="paw-btn paw-right" id="btnRight" data-btn="right" aria-label="右手按钮">
+          <span class="btn-tag">右手</span>
+        </button>
+      </div>
+
+      <button class="back-btn" id="btnBack" data-btn="back">
+        <span class="back-btn-dot"></span>背后键
+      </button>
+
+      <div class="btn-legend">
+        <div class="legend-row"><b>左 / 右手</b><span id="legendLR">移动焦点</span></div>
+        <div class="legend-row"><b>顶部圆环</b><span id="legendRing">进入模块后生效</span></div>
+        <div class="legend-row"><b>背后键</b><span id="legendBack">进入模块</span></div>
+        <div class="legend-row legend-sub">长按背后键 · 开机 / 关机</div>
+      </div>
+    </section>
+
+    <!-- ============ 右侧：设备屏幕 ============ -->
+    <section class="screen-panel">
+      <div class="screen-bezel">
+        <div class="screen" id="screen">
+
+          <!-- 表盘主页（默认空闲页） -->
+          <div class="page page-home-face face-aurora active" data-page="home" id="page-home">
+            <div class="face-illustration" id="homeFaceIllustration">
+              <span class="face-moon"></span>
+              <span class="face-star s1"></span><span class="face-star s2"></span><span class="face-star s3"></span>
+              <span class="face-star s4"></span><span class="face-star s5"></span><span class="face-star s6"></span>
+            </div>
+            <div class="face-time" data-clock-time>10:08</div>
+            <div class="face-date" data-clock-date>周五 · 8月24日</div>
+            <div class="face-weather" id="homeFaceWeather">🌙 18°C 晴朗</div>
+          </div>
+
+          <!-- 图标菜单 -->
+          <div class="page page-menu" data-page="menu" id="page-menu">
+            <div class="home-carousel" id="homeCarousel">
+              <div class="carousel-hint left" id="hintLeft">‹</div>
+              <div class="carousel-viewport">
+                <div class="carousel-track" id="carouselTrack">
+                <div class="app-card focusable unlocked" data-key="settings">
+                  <div class="icon-badge">
+                    <img class="glyph-img" src="assets/icons/settings.png" alt="音量设置">
+                  </div>
+                  <div class="app-label">音量设置</div>
+                </div>
+                <div class="app-card focusable" data-key="z01" data-code="Z01">
+                  <div class="icon-badge">
+                    <img class="glyph-img" src="assets/icons/z01.png" alt="主页个性化">
+                    <span class="lock-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="11" width="12" height="9" rx="2" fill="#fff"/><path d="M9 11V9a3 3 0 0 1 6 0v2" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></span>
+                  </div>
+                  <div class="app-label">主页个性化</div>
+                </div>
+                <div class="app-card focusable" data-key="z02" data-code="Z02" data-unlock-key="z02">
+                  <div class="icon-badge">
+                    <img class="glyph-img" src="assets/icons/z02-music.png" alt="音乐">
+                    <span class="lock-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="11" width="12" height="9" rx="2" fill="#fff"/><path d="M9 11V9a3 3 0 0 1 6 0v2" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></span>
+                  </div>
+                  <div class="app-label">音乐</div>
+                </div>
+                <div class="app-card focusable" data-key="z02b" data-code="Z02" data-unlock-key="z02">
+                  <div class="icon-badge">
+                    <img class="glyph-img" src="assets/icons/z02-word.png" alt="单词">
+                    <span class="lock-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="11" width="12" height="9" rx="2" fill="#fff"/><path d="M9 11V9a3 3 0 0 1 6 0v2" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></span>
+                  </div>
+                  <div class="app-label">单词</div>
+                </div>
+                <div class="app-card focusable" data-key="z03" data-code="Z03">
+                  <div class="icon-badge">
+                    <img class="glyph-img" src="assets/icons/z03.png" alt="打砖块">
+                    <span class="lock-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="11" width="12" height="9" rx="2" fill="#fff"/><path d="M9 11V9a3 3 0 0 1 6 0v2" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></span>
+                  </div>
+                  <div class="app-label">打砖块</div>
+                </div>
+                <div class="app-card focusable" data-key="z04" data-code="Z04">
+                  <div class="icon-badge">
+                    <img class="glyph-img" src="assets/icons/z04.png" alt="AI对话">
+                    <span class="lock-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="11" width="12" height="9" rx="2" fill="#fff"/><path d="M9 11V9a3 3 0 0 1 6 0v2" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></span>
+                  </div>
+                  <div class="app-label">AI对话</div>
+                </div>
+                <div class="app-card focusable" data-key="z05" data-code="Z05">
+                  <div class="icon-badge">
+                    <img class="glyph-img" src="assets/icons/z05.png" alt="AI虚拟养成">
+                    <span class="lock-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="11" width="12" height="9" rx="2" fill="#fff"/><path d="M9 11V9a3 3 0 0 1 6 0v2" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></span>
+                  </div>
+                  <div class="app-label">AI虚拟养成</div>
+                </div>
+                <div class="app-card focusable" data-key="z06" data-code="Z06">
+                  <div class="icon-badge">
+                    <img class="glyph-img" src="assets/icons/z06.png" alt="二维码">
+                    <span class="lock-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="11" width="12" height="9" rx="2" fill="#fff"/><path d="M9 11V9a3 3 0 0 1 6 0v2" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></span>
+                  </div>
+                  <div class="app-label">二维码</div>
+                </div>
+                </div>
+              </div>
+              <div class="carousel-hint right" id="hintRight">›</div>
+            </div>
+          </div>
+          <div class="toast" id="lockToast"></div>
+          <div class="power-overlay" id="powerOverlay">
+            <div class="po-icon">⏻</div>
+            <div class="po-text">已关机</div>
+            <div class="po-hint">长按背后键开机</div>
+          </div>
+
+          <!-- 音量设置 -->
+          <div class="page page-volume" data-page="settings" id="page-settings">
+            <div class="vol-icon" id="volIcon">🔊</div>
+            <div class="vol-track">
+              <div class="vol-track-fill" id="volTrackFill"></div>
+            </div>
+            <div class="vol-about">猿编程AI硬件</div>
+          </div>
+
+          <!-- Z01 个性化：主页表盘画廊 -->
+          <div class="page page-z01" data-page="z01" id="page-z01">
+            <div class="face-carousel">
+              <div class="carousel-hint left" id="faceHintLeft">‹</div>
+              <div class="carousel-viewport">
+                <div class="carousel-track" id="faceTrack">
+                  <div class="face-card focusable selected face-aurora">
+                    <div class="face-illustration">
+                      <span class="face-moon"></span>
+                      <span class="face-star s1"></span><span class="face-star s2"></span><span class="face-star s3"></span>
+                      <span class="face-star s4"></span><span class="face-star s5"></span><span class="face-star s6"></span>
+                    </div>
+                    <div class="face-time" data-clock-time>10:08</div>
+                    <div class="face-date" data-clock-date>周五 · 8月24日</div>
+                    <div class="face-weather">🌙 18°C 晴朗</div>
+                  </div>
+                  <div class="face-card focusable face-sunrise">
+                    <div class="face-illustration">
+                      <span class="face-sun"></span>
+                      <span class="face-mountain m1"></span><span class="face-mountain m2"></span>
+                    </div>
+                    <div class="face-time" data-clock-time>10:08</div>
+                    <div class="face-date" data-clock-date>周五 · 8月24日</div>
+                    <div class="face-weather">🌅 22°C 晴</div>
+                  </div>
+                  <div class="face-card focusable face-forest">
+                    <div class="face-illustration">
+                      <span class="face-tree t1"></span><span class="face-tree t2"></span><span class="face-tree t3"></span>
+                    </div>
+                    <div class="face-time" data-clock-time>10:08</div>
+                    <div class="face-date" data-clock-date>周五 · 8月24日</div>
+                    <div class="face-weather">🌳 20°C 多云</div>
+                  </div>
+                  <div class="face-card focusable face-ocean">
+                    <div class="face-illustration">
+                      <span class="face-wave w1"></span><span class="face-wave w2"></span>
+                    </div>
+                    <div class="face-time" data-clock-time>10:08</div>
+                    <div class="face-date" data-clock-date>周五 · 8月24日</div>
+                    <div class="face-weather">🌊 26°C 晴</div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-hint right" id="faceHintRight">›</div>
+            </div>
+          </div>
+
+          <!-- Z02 音乐 -->
+          <div class="page page-fullscreen" data-page="z02" id="page-z02">
+            <div class="player-card">
+              <div class="player-art" id="musicArt">🎧</div>
+              <div class="player-name" id="musicTrackName">小小星球之歌</div>
+              <div class="player-progress"><div class="player-progress-fill" id="musicProgressFill"></div></div>
+              <div class="player-time">
+                <span id="musicTimeCurrent">0:00</span>
+                <span id="musicTimeTotal">2:34</span>
+              </div>
+              <div class="player-controls">
+                <span class="player-icon" data-role="prev">⏮</span>
+                <span class="player-icon play" id="musicPlayIcon" data-role="play">▶</span>
+                <span class="player-icon" data-role="next">⏭</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Z02b 单词 -->
+          <div class="page page-fullscreen" data-page="z02b" id="page-z02b">
+            <div class="word-card">
+              <div class="word-en" id="wordEn">Robot</div>
+              <div class="word-phonetic" id="wordPhonetic">/ˈroʊbɑːt/</div>
+              <div class="word-cn" id="wordCn">机器人</div>
+              <div class="word-speaker" id="wordSpeaker">🔊</div>
+            </div>
+          </div>
+
+          <!-- Z03 打砖块 -->
+          <div class="page page-z03" data-page="z03" id="page-z03">
+            <div class="game-board" id="gameBoard">
+              <div class="brick-rows" id="brickRows"></div>
+              <div class="game-ball" id="gameBall"></div>
+              <div class="game-paddle" id="gamePaddle"></div>
+              <div class="game-overlay hidden" id="gameOverlay">
+                <div class="game-overlay-text" id="gameOverlayText"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Z04 AI对话 -->
+          <div class="page page-fullscreen page-voice" data-page="z04" id="page-z04">
+            <img class="voice-avatar" src="assets/icons/z04.png" alt="顽豹AI">
+            <div class="voice-status" id="voiceStatus">
+              <div class="voice-indicator" id="voiceIndicator"></div>
+              <div class="voice-text" id="voiceText"></div>
+            </div>
+          </div>
+
+          <!-- Z05 AI虚拟养成 -->
+          <div class="page page-pet" data-page="z05" id="page-z05">
+            <div class="pet-stats-top">
+              <div class="pet-stat"><span class="pet-stat-label">饱食度</span><div class="pb-track"><div class="pb-fill" id="petFullFill" style="width:80%"></div></div></div>
+              <div class="pet-stat"><span class="pet-stat-label">卫生度</span><div class="pb-track"><div class="pb-fill" id="petCleanFill" style="width:60%"></div></div></div>
+            </div>
+            <div class="pet-stage-center">
+              <div class="pet-figure-lg" id="petFigure">🐆</div>
+              <div class="pet-name">豹豹 · Lv.3</div>
+            </div>
+            <div class="pet-actions">
+              <span class="pet-action focusable" data-pet-action="feed">🍖 喂养</span>
+              <span class="pet-action focusable" data-pet-action="bath">🛁 洗澡</span>
+            </div>
+          </div>
+
+          <!-- Z06 二维码 -->
+          <div class="page page-fullscreen" data-page="z06" id="page-z06">
+            <div class="qr-wrap">
+              <img class="qr-code-img" src="assets/qr/mom-message.png" alt="给妈妈的一句话二维码">
+              <div class="qr-text">给妈妈的一句话</div>
+            </div>
+          </div>
+
+        </div>
+        <div class="screen-glare"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- 演示控制台 -->
+  <aside class="demo-console">
+    <h3>原型演示控制台<span class="demo-note">（非产品真实界面）</span></h3>
+    <div class="demo-row" id="demoUnlockRow">
+      <button class="demo-chip" data-toggle="z01">Z01</button>
+      <button class="demo-chip" data-toggle="z02">Z02</button>
+      <button class="demo-chip" data-toggle="z03">Z03</button>
+      <button class="demo-chip" data-toggle="z04">Z04</button>
+      <button class="demo-chip" data-toggle="z05">Z05</button>
+      <button class="demo-chip" data-toggle="z06">Z06</button>
+    </div>
+    <button class="demo-reset" id="demoReset">重置为全部锁定</button>
+    <button class="demo-reset" id="demoUnlockAll">解锁全部</button>
+  </aside>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
+
